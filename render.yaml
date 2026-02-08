@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: food-delivery-app
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: MYSQL_HOST
+        fromDatabase:
+          name: fooddelivery-db
+          property: host
+      - key: MYSQL_PORT
+        fromDatabase:
+          name: fooddelivery-db
+          property: port
+      - key: MYSQL_DATABASE
+        fromDatabase:
+          name: fooddelivery-db
+          property: database
+      - key: MYSQL_USER
+        fromDatabase:
+          name: fooddelivery-db
+          property: user
+      - key: MYSQL_PASSWORD
+        fromDatabase:
+          name: fooddelivery-db
+          property: password
+
+databases:
+  - name: fooddelivery-db
+    plan: free
+    databaseName: fooddelivery
+    user: fooddelivery_user
